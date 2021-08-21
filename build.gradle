@@ -1,0 +1,116 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+group = 'dev.zihasz.anarchtilities'
+version = '1.0.0'
+
+compileJava {
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    options.encoding = 'UTF-8'
+}
+
+minecraft {
+    version = project.forgeVersion
+    mappings = project.mcpVersion
+    runDir = 'run'
+    coreMod = 'dev.zihasz.anarchtilities.core.Loader'
+    makeObfSourceJar = false
+}
+
+repositories {
+    maven { url = 'https://repo.spongepowered.org/maven/' }
+    maven { url = 'https://jitpack.io' }
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.spongepowered:mixin:0.8.3-SNAPSHOT') {
+        exclude module: 'launchwrapper'
+        exclude module: 'guava'
+        exclude module: 'commons-io'
+    }
+
+    compile 'com.esotericsoftware:reflectasm:1.11.9'
+
+    compile 'com.github.cabaletta:baritone:1.2.14'
+    compile 'com.github.cabaletta.baritone:baritone-api:master-SNAPSHOT'
+
+    compile 'com.thealtening.auth:auth:3.0.2'
+    compile 'com.thealtening.api:api:4.1.0'
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+shadowJar {
+    dependencies {
+        include("org.spongepowered:mixin")
+        include("com.esotericsoftware:reflectasm")
+        include("com.github.cabaletta:baritone")
+        include("com.github.cabaletta.baritone:baritone-api")
+        include("com.thealtening.auth:auth")
+        include("com.thealtening.api")
+    }
+    exclude 'dummyThing'
+    exclude 'LICENSE.txt'
+    exclude 'LICENSE'
+    classifier = 'release'
+}
+
+mixin {
+    defaultObfuscationEnv searge
+    add sourceSets.main, 'mixin.anarchtilities.refmap.json'
+}
+
+reobf {
+    shadowJar {
+        mappingType = 'SEARGE'
+        classpath = sourceSets.main.compileClasspath
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'MixinConfigs': 'mixin.anarchtilities.json',
+                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 0,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'dev.zihasz.anarchtilities.core.Loader',
+                'ForceLoadAsMod': 'true',
+                'FMLAT': 'anarchtilities_at.cfg'
+        )
+    }
+}
+
+build.dependsOn(shadowJar)

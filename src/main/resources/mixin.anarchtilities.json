@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "dev.zihasz.anarchtilities.core.mixin",
+  "refmap": "mixins.anarchtilities.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "mixins": [
+	"MixinGuiConnecting",
+	"MixinGuiMainMenu",
+	"MixinGuiMultiplayer"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+	"defaultRequire": 1
+  }
+}

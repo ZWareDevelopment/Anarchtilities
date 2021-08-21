@@ -1,0 +1,18 @@
+[
+  {
+	"modid": "Anarchtilities",
+	"name": "Anarchtilities",
+	"description": "Utilities for Anarchy servers.",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+	"url": "zihasz.dev",
+	"updateUrl": "",
+	"authorList": [
+	  "Zihasz"
+	],
+	"credits": "",
+	"logoFile": "",
+	"screenshots": [],
+	"dependencies": []
+  }
+]
