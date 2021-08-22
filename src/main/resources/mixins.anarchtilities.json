@@ -12,7 +12,8 @@
 	"MixinGuiMultiplayer",
 	"MixinGuiPlayerTabOverlay",
 	"MixinMinecraft",
-	"MixinNetworkManagerChInit"
+	"MixinNetworkManagerChInit",
+	"accessor.IMinecraft"
   ],
   "injectors": {
 	"defaultRequire": 1

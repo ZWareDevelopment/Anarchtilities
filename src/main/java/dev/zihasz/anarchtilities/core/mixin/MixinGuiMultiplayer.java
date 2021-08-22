@@ -1,6 +1,7 @@
 package dev.zihasz.anarchtilities.core.mixin;
 
 import de.enzaxd.viaforge.gui.GuiProtocolSelector;
+import dev.zihasz.anarchtilities.ui.thealtening.GuiTheAltening;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
@@ -23,7 +24,7 @@ public abstract class MixinGuiMultiplayer extends GuiScreen {
 	@Inject(method = "actionPerformed", at = @At("RETURN"))
 	protected void actionPerformed(GuiButton button, CallbackInfo callbackInfo) {
 		if (button.id == 101) mc.displayGuiScreen(new GuiProtocolSelector(this));
-		if (button.id == 102) mc.displayGuiScreen(new GuiMultiplayer(this));
+		if (button.id == 102) mc.displayGuiScreen(new GuiTheAltening(this));
 		if (button.id == 103) mc.displayGuiScreen(new GuiMultiplayer(this));
 		if (button.id == 104) mc.displayGuiScreen(new GuiMultiplayer(this));
 	}
