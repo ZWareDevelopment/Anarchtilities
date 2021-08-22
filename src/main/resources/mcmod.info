@@ -1,6 +1,6 @@
 [
   {
-	"modid": "Anarchtilities",
+	"modid": "anarchtilities",
 	"name": "Anarchtilities",
 	"description": "Utilities for Anarchy servers.",
 	"version": "${version}",

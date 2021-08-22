@@ -2,9 +2,9 @@
 
 ## TODO
 
-* [ ] Connect/Disconnect screen
+* [*] Connect/Disconnect screen
 * [ ] TheAltening
-* [ ] ViaForge
+* [*] ViaForge
 * [ ] Proxy
 * [ ] PingBypass
 * [ ] VPN

@@ -5,12 +5,15 @@
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "mixins": [
+	"MixinFontRenderer",
 	"MixinGuiConnecting",
+	"MixinGuiDisconnected",
 	"MixinGuiMainMenu",
-	"MixinGuiMultiplayer"
+	"MixinGuiMultiplayer",
+	"MixinGuiPlayerTabOverlay",
+	"MixinMinecraft",
+	"MixinNetworkManagerChInit"
   ],
-  "client": [],
-  "server": [],
   "injectors": {
 	"defaultRequire": 1
   }

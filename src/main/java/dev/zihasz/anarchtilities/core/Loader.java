@@ -1,5 +1,6 @@
 package dev.zihasz.anarchtilities.core;
 
+import dev.zihasz.anarchtilities.Anarchtilities;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.Mixins;
@@ -7,11 +8,13 @@ import org.spongepowered.asm.mixin.Mixins;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+@IFMLLoadingPlugin.Name(Anarchtilities.MOD_ID)
+@IFMLLoadingPlugin.MCVersion("1.12.2")
 public class Loader implements IFMLLoadingPlugin {
 
 	public Loader() {
-		MixinBootstrap.init();
-		Mixins.addConfiguration("mixin.anarchtilities.json");
+		MixinBootstrap.init(); // Init mixins
+		Mixins.addConfiguration("mixins.anarchtilities.json");  // Add our own mixins
 	}
 
 	@Override
