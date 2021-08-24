@@ -50,8 +50,10 @@ dependencies {
 
     compile 'com.github.2b2t-Utilities:emoji-api:master-SNAPSHOT'
     compile 'com.github.2b2t-Utilities:2b2tclantags-api:master-SNAPSHOT'
+
     compile 'com.thealtening.auth:auth:3.0.2'
     compile 'com.thealtening.api:api:4.1.0'
+
     compile 'com.viaversion:viaversion:4.0.1'
     compile 'com.viaversion:viabackwards:4.0.1'
     compile 'org.yaml:snakeyaml:1.29'
